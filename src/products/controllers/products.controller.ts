@@ -12,7 +12,6 @@ import {
   Res,
   // ParseIntPipe,
 } from '@nestjs/common';
-import { Response } from 'express';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
 import { ParseIntPipe } from '../../common/parse-int.pipe';
@@ -49,6 +48,12 @@ export class ProductsController {
     //   message: `product ${productId}`,
     // });
     return this.productsService.findOne(productId);
+  }
+
+  @Get('getDBproducts')
+  @ApiOperation({ summary: 'mongo_db products collection' })
+  getDBProducts() {
+    return this.productsService.getDBProducts();
   }
 
   @Post()

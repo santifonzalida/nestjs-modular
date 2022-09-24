@@ -1,10 +1,13 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Inject } from '@nestjs/common';
+import { Db } from 'mongodb';
 
 import { Product } from './../entities/product.entity';
 import { CreateProductDto, UpdateProductDto } from './../dtos/products.dtos';
 
 @Injectable()
 export class ProductsService {
+  constructor(@Inject('MONGO') private database: Db) {}
+
   private counterId = 1;
   private products: Product[] = [
     {
@@ -16,6 +19,11 @@ export class ProductsService {
       image: 'https://i.imgur.com/U4iGx1j.jpeg',
     },
   ];
+
+  getDBProducts() {
+    const productsCollection = this.database.collection('task');
+    return productsCollection.find().toArray();
+  }
 
   findAll() {
     return this.products;
