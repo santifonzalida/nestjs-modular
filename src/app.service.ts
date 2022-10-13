@@ -6,8 +6,6 @@ import { Db } from 'mongodb';
 @Injectable()
 export class AppService {
   constructor(
-    // @Inject('API_KEY') private apiKey: string,
-    @Inject('TASKS') private tasks: any[],
     @Inject('MONGO') private database: Db,
     @Inject(config.KEY) private configService: ConfigType<typeof config>,
   ) {}
@@ -17,8 +15,8 @@ export class AppService {
     return `Hello World! ${apiKey} ${name}`;
   }
 
-  getTask() {
-    const taskCollection = this.database.collection('task');
+  getTasks() {
+    const taskCollection = this.database.collection('tasks');
     return taskCollection.find().toArray();
   }
 }
