@@ -20,7 +20,7 @@ export class Product extends Document {
 
   @Prop(
     raw({
-      name: { typoe: String },
+      name: { type: String },
       image: { type: String },
     }),
   )
