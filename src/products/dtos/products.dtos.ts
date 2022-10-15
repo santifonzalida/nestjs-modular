@@ -37,6 +37,7 @@ export class CreateProductDto {
 
   @IsNotEmpty()
   @ApiProperty()
+  @IsUrl()
   readonly image: string;
 
   @IsNotEmpty()
