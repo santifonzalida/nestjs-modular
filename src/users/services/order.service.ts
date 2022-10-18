@@ -43,4 +43,16 @@ export class OrdersService {
   remove(id: string) {
     return this.orderModel.findByIdAndDelete(id);
   }
+
+  async removeProduct(id: string, productId: string) {
+    const order = await this.orderModel.findById(id);
+    order.products.pull(productId);
+    return order.save();
+  }
+
+  async addProducts(orderId: string, productsIds: string[]) {
+    const order = await this.orderModel.findById(orderId);
+    productsIds.forEach((productId) => order.products.push(productId));
+    return order.save();
+  }
 }
