@@ -31,9 +31,14 @@ export class ProductsService {
       if (minPrice && maxPrice) {
         filter.price = { $gte: minPrice, $lte: maxPrice };
       }
-      return this.productModel.find(filter).skip(offset).limit(limit).exec();
+      return this.productModel
+        .find(filter)
+        .populate('brand')
+        .skip(offset)
+        .limit(limit)
+        .exec();
     }
-    return this.productModel.find().exec();
+    return this.productModel.find().populate('brand').exec();
   }
 
   async findOne(id: string) {
