@@ -17,7 +17,6 @@ const API_KEY_PROD = 'PROD1212121SA';
           user,
           password,
           host,
-          port,
           dbName,
         } = configService.mongo;
         return {
@@ -43,7 +42,6 @@ const API_KEY_PROD = 'PROD1212121SA';
           user,
           password,
           host,
-          port,
           dbName,
         } = configService.mongo;
         const uri = `${connection}://${user}:${password}@${host}/?authMechanism=DEFAULT`;
